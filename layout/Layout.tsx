@@ -4,12 +4,12 @@ import { Footer } from '../components/Footer'
 
 export const Layout: FC = ({ children }) => {
     return (
-        <main className="bg-black text-white">
+        <div className="bg-black text-white">
             <div id="header">
                 <Header />
             </div>
             <div id="body">{children}</div>
             <Footer />
-        </main>
+        </div>
     );
 };

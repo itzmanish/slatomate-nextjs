@@ -1,17 +1,28 @@
-import Image from 'next/image'
-import { Pattern } from './Pattern'
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FC, useContext } from 'react';
+import { useSlatomateClient } from "slatomate-web-sdk";
+interface ILoginFormInput {
+	email: String;
+	password: String;
+}
+export const Login: FC = () => {
+	const client = useSlatomateClient()
+	const { register, formState: { errors }, handleSubmit } = useForm<ILoginFormInput>();
 
-export const Login = () => {
+	const login: SubmitHandler<ILoginFormInput> = (data) => {
+		console.log(data, errors);
+	}
+
 	return (
-		<form className="max-w-xs w-full mx-auto px-4 md:px-0">
+		<form className="max-w-xs w-full mx-auto px-4 md:px-0" onSubmit={handleSubmit(login)}>
 			<div className="text-3xl font-medium">Login to your existing account.</div>
 			<div className="my-4">
 				<div className="text-gray-300 my-2">Email</div>
-				<input type="text" className="border-none focus:outline-none bg-white text-black rounded px-4 py-2 w-full" placeholder="john@gmail.com" />
+				<input {...register("email", { required: true, maxLength: 20 })} type="text" className="border-none focus:outline-none bg-white text-black rounded px-4 py-2 w-full" placeholder="john@gmail.com" />
 			</div>
 			<div className="my-4">
 				<div className="text-gray-300 my-2">Password</div>
-				<input type="password" className="border-none focus:outline-none bg-white text-black rounded px-4 py-2 w-full" placeholder="*******" />
+				<input {...register("password", { required: true, })} type="password" className="border-none focus:outline-none bg-white text-black rounded px-4 py-2 w-full" placeholder="*******" />
 			</div>
 			<div className="my-4">
 				Forgot your password? click here to reset it.
