@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { useSlatomateClient } from "slatomate-web-sdk";
 interface ILoginFormInput {
 	email: String;
