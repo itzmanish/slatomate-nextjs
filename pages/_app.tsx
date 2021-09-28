@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'tailwindcss/tailwind.css'
 import { Layout } from '../layout/Layout'
-import { SlatomateProvider, SlatomateClient } from 'slatomate-web-sdk'
+import { SlatomateProvider, SlatomateClient } from '@slatomate/sdk'
 
 const client = new SlatomateClient()
 
