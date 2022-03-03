@@ -7,13 +7,17 @@ interface ILoginFormInput {
 	password: String;
 }
 export const Login: FC = () => {
-
+	const client = useSlatomateClient()
 	const { register, formState: { errors }, handleSubmit } = useForm<ILoginFormInput>();
 
 	const login: SubmitHandler<ILoginFormInput> = (data) => {
 		console.log(data);
+		client.call({
+			method: "POST",
+			url: "/v1/slatomate/login",
+			body: JSON.stringify(data),
+		})
 	}
-
 
 	return (
 		<form className="max-w-xs w-full mx-auto px-4 md:px-0">
